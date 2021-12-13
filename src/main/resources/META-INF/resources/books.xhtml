@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Tárolt könyvek</title>
+</h:head>
+
+<h:body>
+    <h:form id="formTable">
+        <div class="dataTable">
+            <p:panel header="Tárolt könyvek" id="bookPanel">
+            <p:dataTable id="table" var="book" value="#{dtBookService.books}">
+                <p:column headerText="ID">
+                    <h:outputText value="#{book.id}" />
+                </p:column>
+                <p:column headerText="Title">
+                    <h:outputText value="#{book.name}" />
+                </p:column>
+                <p:column headerText="Author">
+                    <h:outputText value="#{book.author}" />
+                </p:column>
+                <p:column headerText="Number of pages">
+                    <h:outputText value="#{book.numberOfPages}" />
+                </p:column>
+                <p:column>
+                    <p:commandButton value="delete" actionListener="#{dtBookService.deleteBook(book)}">
+                        <f:ajax render="table"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            </p:panel>
+        </div>
+    </h:form>
+</h:body>
+</html>
